@@ -1,5 +1,5 @@
 from turtle import Turtle
-STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)] #Constants are capitalized.
+STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)] 
 MOVE_DISTANCE = 20
 UP = 90
 DOWN = 270
@@ -41,7 +41,6 @@ class Snake:
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
 
-
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
@@ -50,3 +49,10 @@ class Snake:
     def left(self):
         if self.head.heading() != RIGHT:
             self.head.setheading(LEFT)
+
+    def reset(self):
+        for segment in self.segments:
+            segment.goto(x=1000, y=1000) #send the old snakes off screen
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
